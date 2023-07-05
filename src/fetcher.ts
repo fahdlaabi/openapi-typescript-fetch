@@ -123,7 +123,7 @@ function getFetchParams(request: Request): {
   // if body is a top level array [ 'a', 'b', param: value ] with param values
   // using spread [ ...payload ] returns [ 'a', 'b' ] and skips custom keys
   // cloning with Object.assign() preserves all keys
-  const payload = Object.assign(
+  const payload = request.payload instanceof FormData ? request.payload : Object.assign(
     Array.isArray(request.payload) ? [] : {},
     request.payload,
   )
